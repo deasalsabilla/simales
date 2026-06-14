@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="Purdue - Education HTML Template">
+		<meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university">
+		<meta name="author" content="theme_ocean">
+		<!-- SITE TITLE -->
+		<title>SIMALES - Sistem Pendaftaran Les</title>			
+		{% load static %}
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/webfonts/themify-icons.css' %}" />
+    <!-- All Min Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
+    <!-- - owl carousel Css -->
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.theme.css' %}" />
+    <!-- slicknav Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
+    <!-- MAGNIFIC CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" />
+    <!-- jquery-simple-mobilemenu Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-simple-mobilemenu.css' %}" />
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+</head>
+<body>
+	
+	<!-- START PRELOADER -->
+	<div class="preloaders">
+		<span class="loader">Loading</span>
+	</div>
+	<!-- END PRELOADER -->
+
+	<!-- START TOP HEADER CLASS -->
+	<div class="top_header_banner">	
+		
+		<!-- START NAVBAR -->
+      <div id="navigation" class="navbar-light bg-faded site-navigation">
+        <div class="container">
+          <div class="row">
+            <div class="col-20 align-self-center">
+              <div class="site-logo">
+                <a href="{% url 'home' %}"><img src="{% static 'assets/images/simales2.png' %}" alt="" /></a>
+              </div>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-60 d-flex">
+              <nav id="main-menu">
+                <ul>
+                  <li>
+                    <a href="{% url 'home' %}">Beranda</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'about' %}">Tentang Kami</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'daftar' %}">Pendaftaran</a>
+                  </li>
+                  <li>
+                    <a href="#">Pembayaran</a>
+                  </li>
+                  <li>
+                    <a href="contact.html">Jadwal</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-30 d-none d-xl-block text-end align-self-center">
+              <div class="call_to_action">
+                <a class="btn_two" href="register.html">Daftar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+              <!-- - END SOCIAL PROFILE -->
+            </div>
+            <!-- - END Col -->
+
+            <ul class="mobile_menu">
+              <li>
+                <a href="{% url 'home' %}">Beranda</a>
+              </li>
+              <li>
+                <a href="{% url 'about' %}">Tentang Kami</a>
+              </li>
+              <li>
+                <a href="{% url 'daftar' %}">Pendaftaran</a>
+              </li>
+              <li>
+                <a href="#">Pembayaran</a>
+              </li>
+              <li>
+                <a href="contact.html">Jadwal</a>
+              </li>
+            </ul>
+          </div>
+          <!-- - END ROW -->
+        </div>
+        <!-- - END CONTAINER -->
+      </div>
+      <!-- END NAVBAR -->
+							
+		<!-- START SECTION TOP -->
+		<section class="section-top">
+			<div class="container">
+				<div class="col-lg-10 offset-lg-1 text-center">
+					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
+						<h1>Single team</h1>
+						<ul>
+							<li><a href="{% url 'home' %}">Beranda</a></li>
+							<li> / Pendaftaran</li>
+						</ul>
+					</div><!-- //.HERO-TEXT -->
+				</div><!--- END COL -->
+			</div><!--- END CONTAINER -->
+		</section>	
+		<!-- END SECTION TOP -->
+		</div><!-- END  TOP HEADER CLASS -->
+	
+	<!-- START FORM PENDAFTARAN LES -->
+<section class="template_agent section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="single_agent">
+
+
+                    <!-- Form -->
+                    <div class="single_agent_content">
+                        <h4>Form Pendaftaran Les</h4>
+                        <h5>SIMALES - Sistem Informasi Manajemen Les</h5>
+
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text"
+                                       name="nama_lengkap"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Jenis Kelamin</label>
+                                <select name="jenis_kelamin"
+                                        class="form-control"
+                                        required>
+                                    <option value="">Pilih Jenis Kelamin</option>
+                                    <option value="L">Laki-laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Tempat Lahir</label>
+                                <input type="text"
+                                       name="tempat_lahir"
+                                       class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Lahir</label>
+                                <input type="date"
+                                       name="tanggal_lahir"
+                                       class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Sekolah</label>
+                                <input type="text"
+                                       name="sekolah"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Kelas</label>
+                                <input type="text"
+                                       name="kelas_sekolah"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Alamat</label>
+                                <textarea name="alamat"
+                                          rows="3"
+                                          class="form-control"
+                                          required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">No HP</label>
+                                <input type="text"
+                                       name="no_hp"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">No HP Orang Tua</label>
+                                <input type="text"
+                                       name="no_hp_ortu"
+                                       class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Pilih Paket Les</label>
+                                <select name="paket"
+                                        class="form-control"
+                                        required>
+                                    <option value="">Pilih Paket Les</option>
+
+                                    {% for paket in paket_les %}
+                                    <option value="{{ paket.id }}">
+                                        {{ paket.nama_paket }}
+                                        - {{ paket.mata_pelajaran.nama }}
+                                        - Rp {{ paket.biaya|floatformat:0 }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit"
+                                        class="btn btn-primary w-100">
+                                    Daftar Sekarang
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END FORM PENDAFTARAN LES -->
+	
+	<!-- START AJAKAN DAFTAR -->
+<section class="newsletter_area section-padding">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 offset-lg-2 col-sm-12 col-xs-12">
+                <div class="subs_form">
+
+                    <h3>Mulai Perjalanan Belajarmu Bersama SIMALES</h3>
+
+                    <p>
+                        Pilih paket les yang sesuai dengan kebutuhanmu dan daftarkan diri sekarang.
+                        Tingkatkan prestasi akademik dengan bimbingan tutor yang berpengalaman.
+                    </p>
+
+                    <div class="mt-4">
+
+                        <a href=""
+                           class="btn btn-primary me-2">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            Daftar Sekarang
+                        </a>
+
+                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20SIMALES,%20saya%20ingin%20bertanya%20mengenai%20pendaftaran%20les."
+                           target="_blank"
+                           class="btn btn-success">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            Chat Admin
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END AJAKAN DAFTAR -->
+
+	<!-- START FOOTER -->
+	<div class="footer section-padding">
+		<div class="container">				
+			<div class="row">						
+				<div class="col-lg-3 col-sm-6 col-xs-12">
+					<div class="single_footer">
+						<a href="index.html"><img src="assets/images/all-img/logo.png" alt=""></a>         
+						<p>immediately shared the results with a friend who couldn’t believe it was written by an AI. is worth every Yaley and then some. Describe my business along with my business name.</p>
+					</div>
+					<div class="foot_social">
+						<ul>
+							<li><a href="#" class="top_f_facebook"><i class="fa-brands fa-facebook"></i></a></li>
+							<li><a href="#" class="top_f_twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+							<li><a href="#" class="top_f_instagram"><i class="fa-brands fa-instagram"></i></a></li>
+							<li><a href="#" class="top_f_linkedin"><i class="fa-brands fa-linkedin-in"></i></a></li>
+						</ul>						
+					</div>					
+				</div><!--- END COL -->						
+				<div class="col-lg-2 col-sm-6 col-xs-12">
+					<div class="single_footer">
+						<h4>Courses</h4>
+						<ul>
+							<li><a href="#">Creative Writing</a></li>
+							<li><a href="#">Digital Marketing</a></li>
+							<li><a href="#">SEO Business</a></li>
+							<li><a href="#">Social Marketing</a></li>
+							<li><a href="#">Graphic Design</a></li>
+							<li><a href="#">Website Development</a></li>
+						</ul>
+					</div>
+				</div><!--- END COL -->	
+				<div class="col-lg-2 col-sm-6 col-xs-12">
+					<div class="single_footer">
+						<h4>Company</h4>
+						<ul>
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Knowledge Base</a></li>
+							<li><a href="#">Affiliate Program</a></li>
+							<li><a href="#">Community</a></li>
+							<li><a href="#">Market API</a></li>						
+							<li><a href="#">Support team</a></li>						
+						</ul>
+					</div>
+				</div><!--- END COL -->	
+				<div class="col-lg-3 col-sm-6 col-xs-12">
+					<div class="single_footer">
+						<h4>Contact Info</h4>
+						<div class="sf_contact">
+							<span class="ti-mobile"></span>
+							<h3>Phone number</h3>
+							<p>+88 457 845 695</p>
+						</div>
+						<div class="sf_contact">
+							<span class="ti-email"></span>
+							<h3>Email Address</h3>
+							<p>example#yourmail.com</p>
+						</div>
+						<div class="sf_contact">
+							<span class="ti-map"></span>
+							<h3>Office Address</h3>
+							<p>California, USA</p>
+						</div>
+					</div>
+				</div><!--- END COL -->	
+					<div class="col-lg-2 col-sm-6 col-xs-12">
+						<div class="single_footer">
+							<h4>Download App</h4>
+							<p>Download our app from app store and goole play store.</p>
+							<a href="index.html"><img src="assets/images/all-img/google-play.jpg" class="foot_img" alt=""></a>  
+							<a href="index.html"><img src="assets/images/all-img/app-store.jpg" class="foot_img" alt=""></a>  
+						</div>
+					</div><!--- END COL -->					
+			</div><!--- END ROW -->		
+			<div class="row fc">
+				<div class="col-lg-6 col-sm-6 col-xs-12">
+					<div class="footer_copyright">
+						<p>&copy; 2025. All Rights Reserved by <a href="https://bestwpware.com/" class="text-dark" target="_blank">bestwpware</a> • Distributed by <a href="https://themewagon.com" class="text-dark" target="_blank">ThemeWagon</a> </p>
+					</div>
+				</div>
+				<div class="col-lg-6 col-sm-6 col-xs-12">
+					<div class="footer_menu">
+						<ul>
+							<li><a href="#">Terms of use</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Cookie Policy</a></li>
+						</ul>
+					</div>
+				</div><!-- END COL -->
+			</div>				
+		</div><!--- END CONTAINER -->
+	</div>
+	<!-- END FOOTER -->			
+		
+	<!-- Latest jQuery -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <!-- Latest compiled and minified Bootstrap -->
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- owl-carousel min js -->
+    <script src="{% static 'assets/owlcarousel/js/owl.carousel.min.js' %}"></script>
+    <!-- jquery-simple-mobilemenu.min -->
+    <script src="{% static 'assets/js/jquery-simple-mobilemenu.js' %}"></script>
+    <!-- magnific-popup js -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- jquery mixitup min js -->
+    <script src="{% static 'assets/js/jquery.mixitup.js' %}"></script>
+    <!-- GSAP AND LOCOMOTIV JS -->
+    <script src="{% static 'assets/js/gsap.min.js' %}"></script>
+    <script src="{% static 'assets/js/ScrollTrigger.min.js' %}"></script>
+    <script src="{% static 'assets/js/lenis.js' %}"></script>
+    <!-- scrolltopcontrol js -->
+    <script src="{% static 'assets/js/scrolltopcontrol.js' %}"></script>
+    <!-- jquery inview js -->
+    <script src="{% static 'assets/js/jquery.inview.min.js' %}"></script>
+    <!-- WOW - Reveal Animations When You Scroll -->
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <!-- scripts js -->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>	
+</body>
+</html>

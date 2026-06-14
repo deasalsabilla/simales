@@ -12,3 +12,6 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def daftar(request):
+    return render(request, 'daftar.html')

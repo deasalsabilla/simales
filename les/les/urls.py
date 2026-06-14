@@ -6,4 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', v.home, name='home'),
     path('tentang-kami/', v.about, name='about'),
+    path('pendaftaran/', v.daftar, name='daftar'),
 ]

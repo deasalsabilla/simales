@@ -54,7 +54,7 @@
           <div class="row">
             <div class="col-20 align-self-center">
               <div class="site-logo">
-                <a href="index.html"><img src="{% static 'assets/images/simales2.png' %}" alt="" /></a>
+                <a href="{% url 'daftar' %}"><img src="{% static 'assets/images/simales2.png' %}" alt="" /></a>
               </div>
             </div>
             <!-- - END Col -->
@@ -69,7 +69,7 @@
                     <a href="{% url 'about' %}">Tentang Kami</a>
                   </li>
                   <li>
-                    <a href="course.html">Pendaftaran</a>
+                    <a href="{% url 'daftar' %}">Pendaftaran</a>
                   </li>
                   <li>
                     <a href="#">Pembayaran</a>
@@ -98,7 +98,7 @@
                 <a href="{% url 'about' %}">Tentang Kami</a>
               </li>
               <li>
-                <a href="course.html">Pendaftaran</a>
+                <a href="{% url 'daftar' %}">Pendaftaran</a>
               </li>
               <li>
                 <a href="#">Pembayaran</a>
@@ -122,7 +122,7 @@
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
 						<h1>Tentang Kami</h1>
 						<ul>
-							<li><a href="index.html">Beranda</a></li>
+							<li><a href="{% url 'home' %}">Beranda</a></li>
 							<li> / Tentang Kami</li>
 						</ul>
 					</div><!-- //.HERO-TEXT -->
