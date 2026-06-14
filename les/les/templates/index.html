@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Purdue - Education HTML Template" />
+    <meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university" />
+    <meta name="author" content="theme_ocean" />
+    <!-- SITE TITLE -->
+    <title>SIMALES - Sistem Pendaftaran Les</title>
+    <!-- Latest Bootstrap min CSS -->
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/webfonts/themify-icons.css' %}" />
+    <!-- All Min Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
+    <!-- - owl carousel Css -->
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.theme.css' %}" />
+    <!-- slicknav Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
+    <!-- MAGNIFIC CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" />
+    <!-- jquery-simple-mobilemenu Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-simple-mobilemenu.css' %}" />
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <style>
+      .paket-card {
+        width: 100%;
+        background: #fff;
+        border-radius: 25px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+        transition: 0.3s;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+      }
+      
+      .paket-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      }
+      
+      .jenjang-badge {
+        background: #edf2ff;
+        color: #183b7a;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 12px 25px;
+        border-radius: 50px;
+        display: inline-block;
+        margin-bottom: 25px;
+      }
+      
+      .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .paket-title {
+        font-size: 38px;
+        font-weight: 700;
+        color: #163b7a;
+        line-height: 1.3;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .mapel {
+        color: #555;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      
+      .deskripsi-paket {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.8;
+        flex: 1;
+      
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      
+      .harga {
+        font-size: 22px;
+        font-weight: 700;
+        color: #163b7a;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+      
+      .btn-daftar {
+        background: #1f6cf0;
+        color: white;
+        text-decoration: none;
+        padding: 16px;
+        border-radius: 15px;
+        font-weight: 700;
+        font-size: 18px;
+        transition: 0.3s;
+      }
+      
+      .btn-daftar:hover {
+        background: #0d57d9;
+        color: white;
+      }
+      
+      .single_ins2 {
+    min-height: 400px;
+}
+    </style>
+  </head>
+  <body>
+    <!-- START PRELOADER -->
+    <div class="preloaders">
+      <span class="loader">Loading</span>
+    </div>
+    <!-- END PRELOADER -->
+
+    <!-- START TOP HEADER CLASS -->
+    <div class="top_header_banner2">
+      <!-- START NAVBAR -->
+      <div id="navigation" class="navbar-light bg-faded site-navigation">
+        <div class="container">
+          <div class="row">
+            <div class="col-20 align-self-center">
+              <div class="site-logo">
+                <a href="index.html"><img src="{% static 'assets/images/simales2.png' %}" alt="" /></a>
+              </div>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-60 d-flex">
+              <nav id="main-menu">
+                <ul>
+                  <li>
+                    <a href="{% url 'home' %}">Beranda</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'about' %}">Tentang Kami</a>
+                  </li>
+                  <li>
+                    <a href="course.html">Pendaftaran</a>
+                  </li>
+                  <li>
+                    <a href="#">Pembayaran</a>
+                  </li>
+                  <li>
+                    <a href="contact.html">Jadwal</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-30 d-none d-xl-block text-end align-self-center">
+              <div class="call_to_action">
+                <a class="btn_two" href="register.html">Daftar <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+              <!-- - END SOCIAL PROFILE -->
+            </div>
+            <!-- - END Col -->
+
+            <ul class="mobile_menu">
+              <li>
+                <a href="{% url 'home' %}">Beranda</a>
+              </li>
+              <li>
+                <a href="{% url 'about' %}">Tentang Kami</a>
+              </li>
+              <li>
+                <a href="course.html">Pendaftaran</a>
+              </li>
+              <li>
+                <a href="#">Pembayaran</a>
+              </li>
+              <li>
+                <a href="contact.html">Jadwal</a>
+              </li>
+            </ul>
+          </div>
+          <!-- - END ROW -->
+        </div>
+        <!-- - END CONTAINER -->
+      </div>
+      <!-- END NAVBAR -->
+
+      <!-- START HOME -->
+      <section class="home_bg hb_height">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+              <div class="hero-text-img2">
+                <img src="{% static 'assets/images/hero2.png' %}" class="img-fluid" alt="" />
+              </div>
+            </div>
+            <!-- - END COL -->
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+              <div class="hero-text2 ht_top">
+                <h1>Belajar Jadi Lebih Mudah Bersama SIMALES</h1>
+                <p>Temukan kelas les sesuai kebutuhanmu, daftar secara online, dan mulai belajar kapan saja.</p>
+              </div>
+            </div>
+            <!-- - END COL -->
+          </div>
+          <!-- - END ROW -->
+        </div>
+        <!-- - END CONTAINER -->
+      </section>
+      <!-- END HOME -->
+    </div>
+    <!-- END TOP HEADER CLASS -->
+
+    <!-- START CATEGORY TWO -->
+    <section class="category_two_area section-padding">
+      <div class="container">
+        <div class="section-title text-center">
+          <h1>Paket Les</h1>
+        </div>
+        <div class="row">
+          {% load humanize %}
+          {% for paket in paket_les %}
+            <div class="col-lg-3 col-md-6 col-sm-6 mb-4 d-flex">
+              <div class="cat_list_two paket-card">
+                <span class="jenjang-badge">{{ paket.jenjang.nama }}</span>
+
+                <div class="card-content">
+                  <h4 class="paket-title">{{ paket.nama_paket }}</h4>
+
+                  <p class="mapel">{{ paket.mata_pelajaran.nama }}</p>
+
+                  <p class="deskripsi-paket">{{ paket.deskripsi|default:'Deskripsi belum tersedia.' }}</p>
+
+                  <div class="harga">Rp {{ paket.biaya|floatformat:0|intcomma }}</div>
+                </div>
+
+                <a href="#" class="btn-daftar">Daftar Sekarang</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- - END ROW -->
+      </div>
+      <!-- - END CONTAINER -->
+    </section>
+    <!-- END CATEGORY TWO -->
+
+    <!-- START ABOUT US -->
+    <section class="ab_area section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
+            <div class="ab_img">
+              <img src="{% static 'assets/images/all-img/about.png' %}" class="img-fluid" alt="image" />
+            </div>
+          </div>
+          <!-- - END COL -->
+          <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+            <div class="ab_content">
+              <h2>Belajar Lebih Mudah Bersama SIMALES</h2>
+              <p>SIMALES hadir untuk membantu siswa menemukan program les yang sesuai dengan kebutuhan belajar mereka. Dengan tutor berpengalaman, jadwal yang fleksibel, dan berbagai pilihan mata pelajaran, proses belajar menjadi lebih efektif dan menyenangkan.</p>
+              <ul>
+                <li>
+                  <span class="ti-check"></span> Tutor berpengalaman dan kompeten
+                </li>
+                <li>
+                  <span class="ti-check"></span> Pilihan mata pelajaran lengkap
+                </li>
+                <li>
+                  <span class="ti-check"></span> Jadwal belajar fleksibel
+              </ul>
+              <a href="#" class="cta">
+                <span>Daftar Sekarang</span>
+                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <!-- - END COL -->
+        </div>
+        <!-- - END ROW -->
+      </div>
+      <!-- - END CONTAINER -->
+    </section>
+    <!-- END ABOUT US -->
+
+    <!-- START PROMO -->
+<section class="insfreecourse2 section-padding">
+  <div class="container">
+    <div class="row">
+
+      <!-- Promo 1 -->
+      <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+           data-wow-duration="1s"
+           data-wow-delay="0.2s">
+
+        <div class="single_ins2">
+          <div class="single_ins_content2">
+            <h4>Promo Terbatas</h4>
+            <h1>Diskon 20% Biaya Pendaftaran</h1>
+
+            <p>
+              Dapatkan potongan biaya pendaftaran untuk siswa baru.
+              Promo berlaku hingga akhir bulan ini.
+            </p>
+
+            <a href="" class="cta">
+              <span>Daftar Sekarang</span>
+              <svg width="13px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo 2 -->
+      <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+           data-wow-duration="1s"
+           data-wow-delay="0.4s">
+
+        <div class="single_ins2 si_bg">
+          <div class="single_ins_content2">
+            <h4>Paket Favorit</h4>
+            <h1>Gratis Konsultasi Belajar</h1>
+
+            <p>
+              Setiap pendaftaran paket les mendapatkan sesi konsultasi
+              belajar untuk menentukan program yang paling sesuai.
+            </p>
+
+            <a href="" class="cta">
+              <span>Lihat Paket</span>
+              <svg width="13px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END PROMO -->
+<!-- START FOOTER -->
+<div class="footer section-padding">
+    <div class="container">
+
+        <div class="row justify-content-between align-items-start footer-content">
+
+            <!-- Logo & Deskripsi -->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <div class="single_footer footer-left">
+
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'assets/images/simales2.png' %}" alt="SIMALES">
+                    </a>
+
+                    <p class="footer-desc mt-4">
+                        SIMALES adalah sistem pendaftaran les yang memudahkan siswa
+                        memilih paket belajar sesuai kebutuhan. Tersedia berbagai mata
+                        pelajaran dan jenjang pendidikan dengan proses pendaftaran yang
+                        cepat dan mudah.
+                    </p>
+
+                </div>
+
+                <div class="foot_social footer-social">
+                    <ul>
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Menu Cepat -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="single_footer">
+
+                    <h4>Menu Cepat</h4>
+
+                    <ul>
+                        <li><a href="{% url 'home' %}">Beranda</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#paket">Paket Les</a></li>
+                        <li><a href="#jadwal">Jadwal Les</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <!-- Informasi Kontak -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="single_footer">
+
+                    <h4>Informasi Kontak</h4>
+
+                    <div class="sf_contact">
+                        <span class="ti-mobile"></span>
+                        <div>
+                            <h3>Nomor WhatsApp</h3>
+                            <p>0812-3456-7890</p>
+                        </div>
+                    </div>
+
+                    <div class="sf_contact">
+                        <span class="ti-email"></span>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@simales.com</p>
+                        </div>
+                    </div>
+
+                    <div class="sf_contact">
+                        <span class="ti-map"></span>
+                        <div>
+                            <h3>Alamat</h3>
+                            <p>Cepu, Blora, Jawa Tengah</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="footer_copyright">
+                    <p>
+                        © 2026c:\Users\Best\Downloads\purdue-1.0.0\purdue-1.0.0\about.html SIMALES. Seluruh Hak Cipta Dilindungi.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- END FOOTER -->
+    <!-- Latest jQuery -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <!-- Latest compiled and minified Bootstrap -->
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- owl-carousel min js -->
+    <script src="{% static 'assets/owlcarousel/js/owl.carousel.min.js' %}"></script>
+    <!-- jquery-simple-mobilemenu.min -->
+    <script src="{% static 'assets/js/jquery-simple-mobilemenu.js' %}"></script>
+    <!-- magnific-popup js -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- jquery mixitup min js -->
+    <script src="{% static 'assets/js/jquery.mixitup.js' %}"></script>
+    <!-- GSAP AND LOCOMOTIV JS -->
+    <script src="{% static 'assets/js/gsap.min.js' %}"></script>
+    <script src="{% static 'assets/js/ScrollTrigger.min.js' %}"></script>
+    <script src="{% static 'assets/js/lenis.js' %}"></script>
+    <!-- scrolltopcontrol js -->
+    <script src="{% static 'assets/js/scrolltopcontrol.js' %}"></script>
+    <!-- jquery inview js -->
+    <script src="{% static 'assets/js/jquery.inview.min.js' %}"></script>
+    <!-- WOW - Reveal Animations When You Scroll -->
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <!-- scripts js -->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+  </body>
+</html>
