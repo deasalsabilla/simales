@@ -15,3 +15,9 @@ def about(request):
 
 def daftar(request):
     return render(request, 'daftar.html')
+
+def bayar(request):
+    return render(request, 'bayar.html')
+
+def jadwal(request):
+    return render(request, 'jadwal.html')

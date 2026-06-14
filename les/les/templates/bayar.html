@@ -117,10 +117,10 @@
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Pendaftaran</h1>
+						<h1>Pembayaran</h1>
 						<ul>
 							<li><a href="{% url 'home' %}">Beranda</a></li>
-							<li> / Pendaftaran</li>
+							<li> / Pembayaran</li>
 						</ul>
 					</div><!-- //.HERO-TEXT -->
 				</div><!--- END COL -->
@@ -129,129 +129,155 @@
 		<!-- END SECTION TOP -->
 		</div><!-- END  TOP HEADER CLASS -->
 	
-	<!-- START FORM PENDAFTARAN LES -->
+<!-- START PEMBAYARAN -->
 <section class="template_agent section-padding">
     <div class="container">
-        <div class="row justify-content-center">
 
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="single_agent">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2>Konfirmasi Pembayaran</h2>
+                <p>
+                    Silakan lakukan pembayaran sesuai nominal yang tertera,
+                    kemudian unggah bukti transfer untuk proses verifikasi.
+                </p>
+            </div>
+        </div>
 
+        <div class="row">
 
-                    <!-- Form -->
-                    <div class="single_agent_content">
-                        <h4>Form Pendaftaran Les</h4>
-                        <h5>SIMALES - Sistem Informasi Manajemen Les</h5>
+            <!-- CARD PETUNJUK PEMBAYARAN -->
+            <div class="col-lg-5 mb-4">
+                <div class="card shadow border-0 h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Petunjuk Pembayaran
+                        </h5>
+                    </div>
 
-                        <form method="POST">
+                    <div class="card-body">
+
+                        <div class="alert alert-light border">
+                            <strong>Kode Pendaftaran</strong><br>
+                            {{ pendaftaran.kode_pendaftaran }}
+                        </div>
+
+                        <div class="alert alert-light border">
+                            <strong>Paket Les</strong><br>
+                            {{ pendaftaran.paket.nama_paket }}
+                        </div>
+
+                        <div class="alert alert-success">
+                            <strong>Total Pembayaran</strong><br>
+                            Rp {{ pendaftaran.paket.biaya|floatformat:0 }}
+                        </div>
+
+                        <hr>
+
+                        <h6>Transfer ke Rekening:</h6>
+
+                        {% for rekening in rekening_list %}
+                        <div class="border rounded p-3 mb-3">
+                            <strong>{{ rekening.nama_bank }}</strong><br>
+                            {{ rekening.nomor_rekening }}<br>
+                            a.n {{ rekening.atas_nama }}
+                        </div>
+                        {% endfor %}
+
+                        <hr>
+
+                        <h6>Langkah Pembayaran</h6>
+
+                        <ol class="ps-3">
+                            <li>Transfer sesuai nominal pembayaran.</li>
+                            <li>Simpan bukti transfer.</li>
+                            <li>Isi form konfirmasi pembayaran.</li>
+                            <li>Upload bukti transfer.</li>
+                            <li>Tunggu verifikasi dari admin SIMALES.</li>
+                        </ol>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD KONFIRMASI PEMBAYARAN -->
+            <div class="col-lg-7 mb-4">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fa-solid fa-receipt"></i>
+                            Form Konfirmasi Pembayaran
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="mb-3">
-                                <label class="form-label">Nama Lengkap</label>
+                                <label class="form-label">
+                                    Nama Pengirim
+                                </label>
                                 <input type="text"
-                                       name="nama_lengkap"
+                                       name="nama_pengirim"
                                        class="form-control"
                                        required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select name="jenis_kelamin"
-                                        class="form-control"
-                                        required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Tempat Lahir</label>
+                                <label class="form-label">
+                                    Bank Pengirim
+                                </label>
                                 <input type="text"
-                                       name="tempat_lahir"
-                                       class="form-control">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date"
-                                       name="tanggal_lahir"
-                                       class="form-control">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Sekolah</label>
-                                <input type="text"
-                                       name="sekolah"
+                                       name="bank_pengirim"
                                        class="form-control"
                                        required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Kelas</label>
-                                <input type="text"
-                                       name="kelas_sekolah"
+                                <label class="form-label">
+                                    Nominal Transfer
+                                </label>
+                                <input type="number"
+                                       name="nominal"
                                        class="form-control"
+                                       value="{{ pendaftaran.paket.biaya }}"
                                        required>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <textarea name="alamat"
-                                          rows="3"
-                                          class="form-control"
-                                          required></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">No HP</label>
-                                <input type="text"
-                                       name="no_hp"
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    Upload Bukti Transfer
+                                </label>
+                                <input type="file"
+                                       name="bukti_transfer"
                                        class="form-control"
+                                       accept=".jpg,.jpeg,.png,.pdf"
                                        required>
+
+                                <small class="text-muted">
+                                    Format JPG, PNG, JPEG atau PDF.
+                                </small>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">No HP Orang Tua</label>
-                                <input type="text"
-                                       name="no_hp_ortu"
-                                       class="form-control">
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Pilih Paket Les</label>
-                                <select name="paket"
-                                        class="form-control"
-                                        required>
-                                    <option value="">Pilih Paket Les</option>
-
-                                    {% for paket in paket_les %}
-                                    <option value="{{ paket.id }}">
-                                        {{ paket.nama_paket }}
-                                        - {{ paket.mata_pelajaran.nama }}
-                                        - Rp {{ paket.biaya|floatformat:0 }}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="mt-4">
-                                <button type="submit"
-                                        class="btn btn-primary w-100">
-                                    Daftar Sekarang
-                                </button>
-                            </div>
+                            <button type="submit"
+                                    class="btn btn-success w-100">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                Kirim Konfirmasi Pembayaran
+                            </button>
 
                         </form>
-                    </div>
 
+                    </div>
                 </div>
             </div>
 
         </div>
+
     </div>
 </section>
-<!-- END FORM PENDAFTARAN LES -->
+<!-- END PEMBAYARAN -->
 	
 	<!-- START AJAKAN DAFTAR -->
 <section class="newsletter_area section-padding">

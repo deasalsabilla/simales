@@ -117,10 +117,10 @@
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Pendaftaran</h1>
+						<h1>Jadwal Les</h1>
 						<ul>
 							<li><a href="{% url 'home' %}">Beranda</a></li>
-							<li> / Pendaftaran</li>
+							<li> / Jadwal Les</li>
 						</ul>
 					</div><!-- //.HERO-TEXT -->
 				</div><!--- END COL -->
@@ -129,129 +129,129 @@
 		<!-- END SECTION TOP -->
 		</div><!-- END  TOP HEADER CLASS -->
 	
-	<!-- START FORM PENDAFTARAN LES -->
+	<!-- START DOWNLOAD JADWAL -->
 <section class="template_agent section-padding">
     <div class="container">
-        <div class="row justify-content-center">
 
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="single_agent">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8 text-center">
+                <h2>Download Jadwal Les</h2>
+                <p>
+                    Unduh jadwal pembelajaran sesuai jenjang yang Anda ikuti.
+                    Pastikan selalu menggunakan jadwal terbaru yang telah disediakan oleh admin SIMALES.
+                </p>
+            </div>
+        </div>
 
+        <div class="row">
 
-                    <!-- Form -->
-                    <div class="single_agent_content">
-                        <h4>Form Pendaftaran Les</h4>
-                        <h5>SIMALES - Sistem Informasi Manajemen Les</h5>
+            <!-- Card 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100">
 
-                        <form method="POST">
-                            {% csrf_token %}
+                    <div class="card-body text-center">
 
-                            <div class="mb-3">
-                                <label class="form-label">Nama Lengkap</label>
-                                <input type="text"
-                                       name="nama_lengkap"
-                                       class="form-control"
-                                       required>
-                            </div>
+                        <i class="fa-solid fa-file-pdf fa-4x text-danger mb-3"></i>
 
-                            <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select name="jenis_kelamin"
-                                        class="form-control"
-                                        required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
+                        <h4>Jadwal Les Matematika</h4>
 
-                            <div class="mb-3">
-                                <label class="form-label">Tempat Lahir</label>
-                                <input type="text"
-                                       name="tempat_lahir"
-                                       class="form-control">
-                            </div>
+                        <span class="badge bg-primary mb-3">
+                            SMP
+                        </span>
 
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date"
-                                       name="tanggal_lahir"
-                                       class="form-control">
-                            </div>
+                        <p class="text-muted">
+                            Jadwal pembelajaran Matematika untuk siswa jenjang SMP.
+                        </p>
 
-                            <div class="mb-3">
-                                <label class="form-label">Sekolah</label>
-                                <input type="text"
-                                       name="sekolah"
-                                       class="form-control"
-                                       required>
-                            </div>
+                        <p>
+                            <strong>Update:</strong><br>
+                            15 Juni 2026
+                        </p>
 
-                            <div class="mb-3">
-                                <label class="form-label">Kelas</label>
-                                <input type="text"
-                                       name="kelas_sekolah"
-                                       class="form-control"
-                                       required>
-                            </div>
+                        <a href="#"
+                           class="btn btn-success w-100">
+                            <i class="fa-solid fa-download"></i>
+                            Download Jadwal
+                        </a>
 
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <textarea name="alamat"
-                                          rows="3"
-                                          class="form-control"
-                                          required></textarea>
-                            </div>
+                    </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">No HP</label>
-                                <input type="text"
-                                       name="no_hp"
-                                       class="form-control"
-                                       required>
-                            </div>
+                </div>
+            </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">No HP Orang Tua</label>
-                                <input type="text"
-                                       name="no_hp_ortu"
-                                       class="form-control">
-                            </div>
+            <!-- Card 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100">
 
-                            <div class="mb-3">
-                                <label class="form-label">Pilih Paket Les</label>
-                                <select name="paket"
-                                        class="form-control"
-                                        required>
-                                    <option value="">Pilih Paket Les</option>
+                    <div class="card-body text-center">
 
-                                    {% for paket in paket_les %}
-                                    <option value="{{ paket.id }}">
-                                        {{ paket.nama_paket }}
-                                        - {{ paket.mata_pelajaran.nama }}
-                                        - Rp {{ paket.biaya|floatformat:0 }}
-                                    </option>
-                                    {% endfor %}
-                                </select>
-                            </div>
+                        <i class="fa-solid fa-file-pdf fa-4x text-danger mb-3"></i>
 
-                            <div class="mt-4">
-                                <button type="submit"
-                                        class="btn btn-primary w-100">
-                                    Daftar Sekarang
-                                </button>
-                            </div>
+                        <h4>Jadwal Les IPA</h4>
 
-                        </form>
+                        <span class="badge bg-success mb-3">
+                            SMP
+                        </span>
+
+                        <p class="text-muted">
+                            Jadwal pembelajaran IPA untuk siswa jenjang SMP.
+                        </p>
+
+                        <p>
+                            <strong>Update:</strong><br>
+                            15 Juni 2026
+                        </p>
+
+                        <a href="#"
+                           class="btn btn-success w-100">
+                            <i class="fa-solid fa-download"></i>
+                            Download Jadwal
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body text-center">
+
+                        <i class="fa-solid fa-file-pdf fa-4x text-danger mb-3"></i>
+
+                        <h4>Jadwal Les Bahasa Inggris</h4>
+
+                        <span class="badge bg-warning text-dark mb-3">
+                            SMA
+                        </span>
+
+                        <p class="text-muted">
+                            Jadwal pembelajaran Bahasa Inggris untuk siswa jenjang SMA.
+                        </p>
+
+                        <p>
+                            <strong>Update:</strong><br>
+                            15 Juni 2026
+                        </p>
+
+                        <a href="#"
+                           class="btn btn-success w-100">
+                            <i class="fa-solid fa-download"></i>
+                            Download Jadwal
+                        </a>
+
                     </div>
 
                 </div>
             </div>
 
         </div>
+
     </div>
 </section>
-<!-- END FORM PENDAFTARAN LES -->
+<!-- END DOWNLOAD JADWAL -->
 	
 	<!-- START AJAKAN DAFTAR -->
 <section class="newsletter_area section-padding">
