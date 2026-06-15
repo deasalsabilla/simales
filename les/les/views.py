@@ -21,3 +21,6 @@ def bayar(request):
 
 def jadwal(request):
     return render(request, 'jadwal.html')
+
+def login(request):
+    return render(request, 'login.html')

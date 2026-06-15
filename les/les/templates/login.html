@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name="description" content="Purdue - Education HTML Template">
+		<meta name="keywords" content="theme_ocean, college, course, e-learning, education, high school, kids, learning, online, online courses, school, student, teacher, tutor, university">
+		<meta name="author" content="theme_ocean">
+		<!-- SITE TITLE -->
+		<title>SIMALES - Sistem Pendaftaran Les</title>			
+		{% load static %}
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/webfonts/themify-icons.css' %}" />
+    <!-- All Min Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
+    <!-- - owl carousel Css -->
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/owlcarousel/css/owl.theme.css' %}" />
+    <!-- slicknav Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
+    <!-- MAGNIFIC CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}" />
+    <!-- jquery-simple-mobilemenu Css -->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-simple-mobilemenu.css' %}" />
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+	<style>
+		.login_register {
+    background: linear-gradient(135deg, #eef5ff 0%, #dbeafe 100%);
+    min-height: 100vh;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 45px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.login-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.brand-title {
+    color: #1e3a8a;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.brand-subtitle {
+    color: #6b7280;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.login-title {
+    text-align: center;
+    color: #1f2937;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.input-group-text {
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+.input-custom {
+    height: 55px;
+    border: 1px solid #e5e7eb;
+    box-shadow: none;
+}
+
+.input-custom:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+}
+
+.btn-login {
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 14px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.register-link {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+
+    .brand-title {
+        font-size: 26px;
+    }
+}
+	</style>
+</head>
+<body>
+	
+	<!-- START PRELOADER -->
+	<div class="preloaders">
+		<span class="loader">Loading</span>
+	</div>
+	<!-- END PRELOADER -->
+
+
+	<!-- START LOGIN -->
+<section class="login_register section-padding">
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+
+            <div class="col-lg-5 col-md-8 col-sm-10">
+
+                <div class="login-card">
+
+                    <!-- Logo -->
+                    <div class="text-center mb-4">
+                        <img src="{% static 'assets/images/simales2.png' %}"
+                             alt="SIMALES Logo"
+                             class="login-logo">
+
+                        <h2 class="brand-title">SIMALES</h2>
+
+                        <p class="brand-subtitle">
+                            Sistem Informasi Manajemen Les
+                        </p>
+                    </div>
+
+                    <h4 class="login-title">Selamat Datang Kembali</h4>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group mb-3">
+                            <label>Username</label>
+
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="ti-user"></i>
+                                </span>
+
+                                <input
+                                    type="text"
+                                    class="form-control input-custom"
+                                    name="username"
+                                    placeholder="Masukkan username"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label>Password</label>
+
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="ti-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    class="form-control input-custom"
+                                    name="password"
+                                    placeholder="Masukkan password"
+                                    required>
+                            </div>
+                        </div>
+
+                        <button class="btn-login" type="submit">
+                            Login
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <p class="mb-0">
+                                Belum punya akun?
+                                <a href="" class="register-link">
+                                    Daftar Sekarang
+                                </a>
+                            </p>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END LOGIN -->
+			
+	
+	<!-- Latest jQuery -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <!-- Latest compiled and minified Bootstrap -->
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- owl-carousel min js -->
+    <script src="{% static 'assets/owlcarousel/js/owl.carousel.min.js' %}"></script>
+    <!-- jquery-simple-mobilemenu.min -->
+    <script src="{% static 'assets/js/jquery-simple-mobilemenu.js' %}"></script>
+    <!-- magnific-popup js -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- jquery mixitup min js -->
+    <script src="{% static 'assets/js/jquery.mixitup.js' %}"></script>
+    <!-- GSAP AND LOCOMOTIV JS -->
+    <script src="{% static 'assets/js/gsap.min.js' %}"></script>
+    <script src="{% static 'assets/js/ScrollTrigger.min.js' %}"></script>
+    <script src="{% static 'assets/js/lenis.js' %}"></script>
+    <!-- scrolltopcontrol js -->
+    <script src="{% static 'assets/js/scrolltopcontrol.js' %}"></script>
+    <!-- jquery inview js -->
+    <script src="{% static 'assets/js/jquery.inview.min.js' %}"></script>
+    <!-- WOW - Reveal Animations When You Scroll -->
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <!-- scripts js -->
+    <script src="{% static 'assets/js/scripts.js' %}"></script>				
+</body>
+</html>
