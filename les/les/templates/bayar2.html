@@ -228,95 +228,148 @@
 
         <div class="row justify-content-center mb-5">
             <div class="col-lg-8 text-center">
-                <h2>Informasi Pembayaran</h2>
-
+                <h2>Konfirmasi Pembayaran</h2>
                 <p>
-                    Silakan lakukan pembayaran sesuai nominal berikut,
-                    kemudian kirim konfirmasi melalui WhatsApp admin.
+                    Silakan lakukan pembayaran sesuai nominal yang tertera,
+                    kemudian unggah bukti transfer untuk proses verifikasi.
                 </p>
             </div>
         </div>
 
-        <div class="row justify-content-center">
+        <div class="row">
 
-            <div class="col-lg-7">
-
-                <div class="card shadow border-0">
-
+            <!-- CARD PETUNJUK PEMBAYARAN -->
+            <div class="col-lg-5 mb-4">
+                <div class="card shadow border-0 h-100">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">
-                            <i class="fa-solid fa-wallet"></i>
-                            Pembayaran Les
+                            <i class="fa-solid fa-circle-info"></i>
+                            Petunjuk Pembayaran
                         </h5>
                     </div>
 
                     <div class="card-body">
 
-                        <div class="alert alert-success text-center mb-4">
-                            <h6 class="mb-2">Total Pembayaran</h6>
-
-                            <h2 class="mb-0">
-                                Rp {{ nominal|floatformat:0 }}
-                            </h2>
+                        <div class="alert alert-light border">
+                            <strong>Kode Pendaftaran</strong><br>
+                            {{ pendaftaran.kode_pendaftaran }}
                         </div>
 
-                        <h6 class="mb-3">
-                            Transfer ke salah satu rekening berikut:
-                        </h6>
-
-                        {% for rekening in rekening_list %}
-                        <div class="border rounded p-3 mb-3">
-
-                            <h6 class="mb-1">
-                                {{ rekening.nama_bank }}
-                            </h6>
-
-                            <div class="fs-5 fw-bold">
-                                {{ rekening.nomor_rekening }}
-                            </div>
-
-                            <small class="text-muted">
-                                a.n {{ rekening.atas_nama }}
-                            </small>
-
+                        <div class="alert alert-light border">
+                            <strong>Paket Les</strong><br>
+                            {{ pendaftaran.paket.nama_paket }}
                         </div>
-                        {% empty %}
-                        <div class="alert alert-warning">
-                            Rekening pembayaran belum tersedia.
-                        </div>
-                        {% endfor %}
+
+                        <div class="alert alert-success">
+    <strong>Total Pembayaran</strong><br>
+    Rp 300.000
+</div>
 
                         <hr>
 
-                        <div class="alert alert-info mb-4">
+                        <h6>Transfer ke Rekening:</h6>
 
-                            <h6>Langkah Pembayaran</h6>
+                        {% for rekening in rekening_list %}
+<div class="border rounded p-3 mb-3">
+    <strong>{{ rekening.nama_bank }}</strong><br>
+    {{ rekening.nomor_rekening }}<br>
+    a.n {{ rekening.atas_nama }}
+</div>
+{% empty %}
+<div class="alert alert-warning mb-0">
+    Rekening pembayaran belum tersedia.
+</div>
+{% endfor %}
 
-                            <ol style="padding-left: 20px; margin-bottom: 0;">
-                                <li>Transfer sebesar Rp 300.000.</li>
-                                <li>Simpan bukti transfer.</li>
-                                <li>Klik tombol konfirmasi WhatsApp.</li>
-                                <li>Kirim bukti transfer ke admin.</li>
-                                <li>Tunggu verifikasi dari admin.</li>
-                            </ol>
+                        <hr>
 
-                        </div>
+                        <h6>Langkah Pembayaran</h6>
 
-                        {% with pesan='Halo Admin SIMALES, saya telah melakukan pembayaran les sebesar Rp300.000. Berikut saya lampirkan bukti transfer untuk proses verifikasi.' %}
-                        <a href="https://wa.me/62882006807145?text={{ pesan|urlencode }}"
-                           target="_blank"
-                           class="btn btn-success w-100">
-
-                            <i class="fa-brands fa-whatsapp me-2"></i>
-                            Konfirmasi via WhatsApp
-
-                        </a>
-                        {% endwith %}
+                        <ol class="ps-3">
+                            <li>Transfer sesuai nominal pembayaran.</li>
+                            <li>Simpan bukti transfer.</li>
+                            <li>Isi form konfirmasi pembayaran.</li>
+                            <li>Upload bukti transfer.</li>
+                            <li>Tunggu verifikasi dari admin SIMALES.</li>
+                        </ol>
 
                     </div>
-
                 </div>
+            </div>
 
+            <!-- CARD KONFIRMASI PEMBAYARAN -->
+            <div class="col-lg-7 mb-4">
+                <div class="card shadow border-0">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fa-solid fa-receipt"></i>
+                            Form Konfirmasi Pembayaran
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Nama Pengirim
+                                </label>
+                                <input type="text"
+                                       name="nama_pengirim"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Bank Pengirim
+                                </label>
+                                <input type="text"
+                                       name="bank_pengirim"
+                                       class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="mb-3">
+    <label class="form-label">
+        Nominal Transfer
+    </label>
+
+    <input type="number"
+           name="nominal"
+           class="form-control"
+           value="300000"
+           readonly
+           required>
+</div>
+
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    Upload Bukti Transfer
+                                </label>
+                                <input type="file"
+                                       name="bukti_transfer"
+                                       class="form-control"
+                                       accept=".jpg,.jpeg,.png,.pdf"
+                                       required>
+
+                                <small class="text-muted">
+                                    Format JPG, PNG, JPEG atau PDF.
+                                </small>
+                            </div>
+
+                            <button type="submit"
+                                    class="btn btn-success w-100">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                Kirim Konfirmasi Pembayaran
+                            </button>
+
+                        </form>
+
+                    </div>
+                </div>
             </div>
 
         </div>

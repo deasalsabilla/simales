@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
-from .models import PaketLes
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import PaketLes, Siswa, Pendaftaran, Rekening, Pembayaran
+import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     paket_les = PaketLes.objects.filter(aktif=True)
@@ -18,10 +20,174 @@ def about(request):
     return render(request, 'about.html')
 
 def daftar(request):
-    return render(request, 'daftar.html')
+    paket_les = PaketLes.objects.filter(aktif=True)
+
+    if request.method == 'POST':
+        paket = get_object_or_404(
+            PaketLes,
+            id=request.POST.get('paket'),
+            aktif=True
+        )
+
+        siswa, created = Siswa.objects.get_or_create(
+            user=request.user,
+            defaults={
+                'nama_lengkap': request.POST.get('nama_lengkap'),
+                'jenis_kelamin': request.POST.get('jenis_kelamin'),
+                'tempat_lahir': request.POST.get('tempat_lahir'),
+                'tanggal_lahir': request.POST.get('tanggal_lahir') or None,
+                'sekolah': request.POST.get('sekolah'),
+                'kelas_sekolah': request.POST.get('kelas_sekolah'),
+                'alamat': request.POST.get('alamat'),
+                'no_hp': request.POST.get('no_hp'),
+                'no_hp_ortu': request.POST.get('no_hp_ortu'),
+            }
+        )
+
+        # Jika data siswa sudah ada, update datanya
+        if not created:
+            siswa.nama_lengkap = request.POST.get('nama_lengkap')
+            siswa.jenis_kelamin = request.POST.get('jenis_kelamin')
+            siswa.tempat_lahir = request.POST.get('tempat_lahir')
+            siswa.tanggal_lahir = request.POST.get('tanggal_lahir') or None
+            siswa.sekolah = request.POST.get('sekolah')
+            siswa.kelas_sekolah = request.POST.get('kelas_sekolah')
+            siswa.alamat = request.POST.get('alamat')
+            siswa.no_hp = request.POST.get('no_hp')
+            siswa.no_hp_ortu = request.POST.get('no_hp_ortu')
+            siswa.save()
+
+        # Cek apakah sudah pernah mendaftar paket yang sama
+        sudah_terdaftar = Pendaftaran.objects.filter(
+            siswa=siswa,
+            paket=paket
+        ).exclude(status='DITOLAK').exists()
+
+        if sudah_terdaftar:
+            messages.warning(
+                request,
+                'Anda sudah terdaftar pada paket les ini.'
+            )
+            return redirect('daftar')
+
+        # Generate kode pendaftaran
+        while True:
+            kode = f"LES-{random.randint(100000, 999999)}"
+
+            if not Pendaftaran.objects.filter(
+                kode_pendaftaran=kode
+            ).exists():
+                break
+
+        pendaftaran = Pendaftaran.objects.create(
+            kode_pendaftaran=kode,
+            siswa=siswa,
+            paket=paket
+        )
+
+        messages.success(
+            request,
+            'Pendaftaran berhasil dilakukan.'
+        )
+
+        return redirect(
+    'bayar2',
+    pendaftaran_id=pendaftaran.id
+)
+
+    context = {
+        'paket_les': paket_les
+    }
+
+    return render(request, 'daftar.html', context)
+
+@login_required(login_url='login')
+def bayar_daftar(request, pendaftaran_id):
+
+    pendaftaran = get_object_or_404(
+        Pendaftaran,
+        id=pendaftaran_id,
+        siswa__user=request.user
+    )
+
+    rekening_list = Rekening.objects.filter(
+        aktif=True
+    )
+
+    if request.method == 'POST':
+
+        # Cek apakah sudah pernah upload pembayaran
+        if hasattr(pendaftaran, 'pembayaran'):
+            messages.warning(
+                request,
+                'Bukti pembayaran sudah pernah dikirim.'
+            )
+            return redirect(
+                'bayar2',
+                pendaftaran_id=pendaftaran.id
+            )
+
+        bukti_transfer = request.FILES.get(
+            'bukti_transfer'
+        )
+
+        if not bukti_transfer:
+            messages.error(
+                request,
+                'Bukti transfer wajib diupload.'
+            )
+            return redirect(
+                'bayar2',
+                pendaftaran_id=pendaftaran.id
+            )
+
+        Pembayaran.objects.create(
+            pendaftaran=pendaftaran,
+            nominal=300000,
+            nama_pengirim=request.POST.get(
+                'nama_pengirim'
+            ),
+            bank_pengirim=request.POST.get(
+                'bank_pengirim'
+            ),
+            bukti_transfer=bukti_transfer
+        )
+
+        pendaftaran.status = 'MENUNGGU_VERIFIKASI'
+        pendaftaran.save()
+
+        messages.success(
+            request,
+            'Bukti pembayaran berhasil dikirim.'
+        )
+
+        return redirect(
+            'bayar2',
+            pendaftaran_id=pendaftaran.id
+        )
+
+    context = {
+        'pendaftaran': pendaftaran,
+        'rekening_list': rekening_list,
+    }
+
+    return render(
+        request,
+        'bayar2.html',
+        context
+    )
 
 def bayar(request):
-    return render(request, 'bayar.html')
+    rekening_list = Rekening.objects.filter(
+        aktif=True
+    ).order_by('nama_bank')
+
+    context = {
+        'rekening_list': rekening_list,
+        'nominal': 300000,
+    }
+
+    return render(request, 'bayar.html', context)
 
 def jadwal(request):
     return render(request, 'jadwal.html')
