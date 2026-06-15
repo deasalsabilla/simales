@@ -121,7 +121,7 @@
 }
 
 .register-link:hover {
-	color: black;
+    color: black;
     text-decoration: underline;
 }
 
@@ -144,8 +144,7 @@
 	</div>
 	<!-- END PRELOADER -->
 
-
-	<!-- START LOGIN -->
+<!-- START REGISTER -->
 <section class="login_register section-padding">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
@@ -167,11 +166,20 @@
                         </p>
                     </div>
 
-                    <h4 class="login-title">Selamat Datang Kembali</h4>
+                    <h4 class="login-title">Buat Akun Baru</h4>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 
                     <form method="POST">
                         {% csrf_token %}
 
+                        <!-- Username -->
                         <div class="form-group mb-3">
                             <label>Username</label>
 
@@ -189,7 +197,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-4">
+                        <!-- Password -->
+                        <div class="form-group mb-3">
                             <label>Password</label>
 
                             <div class="input-group">
@@ -200,21 +209,40 @@
                                 <input
                                     type="password"
                                     class="form-control input-custom"
-                                    name="password"
+                                    name="password1"
                                     placeholder="Masukkan password"
                                     required>
                             </div>
                         </div>
 
+                        <!-- Konfirmasi Password -->
+                        <div class="form-group mb-4">
+                            <label>Konfirmasi Password</label>
+
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="ti-lock"></i>
+                                </span>
+
+                                <input
+                                    type="password"
+                                    class="form-control input-custom"
+                                    name="password2"
+                                    placeholder="Masukkan ulang password"
+                                    required>
+                            </div>
+                        </div>
+
                         <button class="btn-login" type="submit">
-                            Login
+                            Daftar
                         </button>
 
                         <div class="text-center mt-4">
                             <p class="mb-0">
-                                Belum punya akun?
-                                <a href="{% url 'register' %}" class="register-link">
-                                    Daftar Sekarang
+                                Sudah punya akun?
+
+                                <a href="{% url 'login' %}" class="register-link">
+                                    Login Sekarang
                                 </a>
                             </p>
                         </div>
@@ -228,7 +256,7 @@
         </div>
     </div>
 </section>
-<!-- END LOGIN -->
+<!-- END REGISTER -->
 			
 	
 	<!-- Latest jQuery -->
