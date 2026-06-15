@@ -144,6 +144,13 @@
 	</div>
 	<!-- END PRELOADER -->
 
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 <!-- START REGISTER -->
 <section class="login_register section-padding">
     <div class="container">

@@ -9,6 +9,8 @@ urlpatterns = [
     path('pendaftaran/', v.daftar, name='daftar'),
     path('pembayaran/', v.bayar, name='bayar'),
     path('jadwal/', v.jadwal, name='jadwal'),
-    path('login/', v.login, name='login'),
+    path('login/', v.login_view , name='login'),
     path('register/', v.register, name='register'),
+
+    path('logout/', v.logout_view, name='logout'),
 ]
