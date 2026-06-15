@@ -1,0 +1,141 @@
+{% load static %}
+<!-- START NAVBAR -->
+      <div id="navigation" class="navbar-light bg-faded site-navigation">
+        <div class="container">
+          <div class="row">
+            <div class="col-20 align-self-center">
+              <div class="site-logo">
+                <a href="{% url 'home' %}"><img src="{% static 'assets/images/simales2.png' %}" alt="" /></a>
+              </div>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-60 d-flex">
+              <nav id="main-menu">
+                <ul>
+                  <li>
+                    <a href="{% url 'home' %}">Beranda</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'about' %}">Tentang Kami</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'daftar' %}">Pendaftaran</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'bayar' %}">Pembayaran</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'jadwal' %}">Jadwal</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <!-- - END Col -->
+
+            <div class="col-30 d-none d-xl-block text-end align-self-center">
+
+    {% if user.is_authenticated %}
+
+        <div class="dropdown d-inline-block">
+
+            <button class="btn_two dropdown-toggle"
+                    type="button"
+                    id="userDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+
+                <i class="ti-user me-1"></i>
+                {{ user.username }}
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="userDropdown">
+
+                <li>
+                    <a class="dropdown-item"
+                       href="{% url 'logout' %}">
+                        <i class="ti-power-off me-2"></i>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    {% else %}
+
+        <div class="call_to_action">
+            <a class="btn_two" href="{% url 'register' %}">
+                Daftar
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+    {% endif %}
+
+</div>
+            <!-- - END Col -->
+
+            <ul class="mobile_menu">
+    <li>
+        <a href="{% url 'home' %}">Beranda</a>
+    </li>
+
+    <li>
+        <a href="{% url 'about' %}">Tentang Kami</a>
+    </li>
+
+    <li>
+        <a href="{% url 'daftar' %}">Pendaftaran</a>
+    </li>
+
+    <li>
+        <a href="{% url 'bayar' %}">Pembayaran</a>
+    </li>
+
+    <li>
+        <a href="{% url 'jadwal' %}">Jadwal</a>
+    </li>
+
+    {% if user.is_authenticated %}
+
+        <li>
+            <a href="#">
+                <i class="ti-user"></i>
+                {{ user.username }}
+            </a>
+
+            <ul>
+                <li>
+                    <a href="{% url 'logout' %}">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+    {% else %}
+
+        <li>
+            <a href="{% url 'register' %}">
+                Daftar
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </li>
+
+    {% endif %}
+</ul>
+          </div>
+          <!-- - END ROW -->
+        </div>
+        <!-- - END CONTAINER -->
+      </div>
+      <!-- END NAVBAR -->
