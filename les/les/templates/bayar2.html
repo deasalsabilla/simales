@@ -229,7 +229,45 @@
                         </form>
 
                     </div>
+                    
                 </div>
+                <!-- CARD STATUS VERIFIKASI -->
+<div class="card border-warning bg-light mb-4">
+    <div class="card-body">
+
+        <div class="d-flex align-items-center mb-3">
+            <div class="me-3">
+                <i class="fa-solid fa-hourglass-half fa-2x text-warning"></i>
+            </div>
+
+            <div>
+                <h5 class="mb-1">Menunggu Verifikasi Pembayaran</h5>
+                <p class="mb-0 text-muted">
+                    Setelah bukti transfer dikirim, admin SIMALES akan
+                    melakukan pengecekan pembayaran Anda.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert alert-warning mb-3">
+            <i class="fa-solid fa-circle-info me-2"></i>
+            Proses verifikasi dilakukan maksimal <strong>1 × 24 jam</strong>
+            pada hari kerja.
+        </div>
+
+        <p class="mb-3">
+            Jika pembayaran Anda ingin segera diverifikasi, silakan hubungi admin melalui WhatsApp.
+        </p>
+
+        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20SIMALES,%20saya%20ingin%20mengonfirmasi%20pembayaran%20dengan%20kode%20pendaftaran%20{{ pendaftaran.kode_pendaftaran }}."
+           target="_blank"
+           class="btn btn-success w-100">
+            <i class="fa-brands fa-whatsapp me-2"></i>
+            Hubungi Admin via WhatsApp
+        </a>
+
+    </div>
+</div>
             </div>
 
         </div>
