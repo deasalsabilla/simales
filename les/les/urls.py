@@ -16,6 +16,8 @@ urlpatterns = [
     name='bayar2'
 ),
     path('jadwal/', v.jadwal, name='jadwal'),
+    path('kontak/', v.kontak, name='kontak'),
+    path('les-saya/', v.les_saya, name='les_saya'),
     path('login/', v.login_view , name='login'),
     path('register/', v.register, name='register'),
 

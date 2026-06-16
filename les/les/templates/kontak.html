@@ -62,131 +62,108 @@
 
 	<!-- START TOP HEADER CLASS -->
 	<div class="top_header_banner">	
-		
-{% include "partials/navbar.html" %}
+		{% include "partials/navbar.html" %}
 							
 		<!-- START SECTION TOP -->
 		<section class="section-top">
 			<div class="container">
 				<div class="col-lg-10 offset-lg-1 text-center">
 					<div class="section-top-title wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<h1>Jadwal Les</h1>
+						<h1>Kontak</h1>
 						<ul>
 							<li><a href="{% url 'home' %}">Beranda</a></li>
-							<li> / Jadwal Les</li>
+							<li> / Kontak</li>
 						</ul>
 					</div><!-- //.HERO-TEXT -->
 				</div><!--- END COL -->
 			</div><!--- END CONTAINER -->
 		</section>	
 		<!-- END SECTION TOP -->
-		</div><!-- END  TOP HEADER CLASS -->
+	</div><!-- END  TOP HEADER CLASS -->
 	
-	<!-- START DOWNLOAD JADWAL -->
-<section class="template_agent section-padding">
+	<!-- START ADDRESS -->
+<section class="address_area section-padding">
     <div class="container">
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <h2>Download Jadwal Les</h2>
-                <p>
-                    Unduh jadwal pembelajaran sesuai jenjang yang Anda ikuti.
-                    Pastikan selalu menggunakan jadwal terbaru yang telah disediakan oleh admin SIMALES.
-                </p>
-            </div>
-        </div>
-
-        <div class="row">
-
-    {% for jadwal in jadwal_list %}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card shadow border-0 h-100">
-
-            <div class="card-body text-center">
-
-                <i class="fa-solid fa-file-pdf fa-4x text-danger mb-3"></i>
-
-                <h4>{{ jadwal.judul }}</h4>
-
-                <span class="badge bg-primary mb-3">
-                    {{ jadwal.jenjang.nama }}
-                </span>
-
-                <p class="text-muted">
-                    Jadwal pembelajaran untuk jenjang
-                    {{ jadwal.jenjang.nama }}.
-                </p>
-
-                <p>
-                    <strong>Update:</strong><br>
-                    {{ jadwal.uploaded_at|date:"d F Y" }}
-                </p>
-
-                <a href="{{ jadwal.file_jadwal.url }}"
-                   class="btn btn-success w-100"
-                   target="_blank">
-
-                    <i class="fa-solid fa-download"></i>
-                    Download Jadwal
-                </a>
-
-            </div>
-
-        </div>
-    </div>
-
-    {% empty %}
-    <div class="col-12">
-        <div class="alert alert-warning text-center">
-            Anda belum memiliki jadwal les aktif.
-        </div>
-    </div>
-    {% endfor %}
-
-</div>
-
-    </div>
-</section>
-<!-- END DOWNLOAD JADWAL -->
-	
-	<!-- START AJAKAN DAFTAR -->
-<section class="newsletter_area section-padding">
-    <div class="container">
         <div class="row text-center">
-            <div class="col-lg-8 offset-lg-2 col-sm-12 col-xs-12">
-                <div class="subs_form">
 
-                    <h3>Mulai Perjalanan Belajarmu Bersama SIMALES</h3>
+            <!-- Alamat -->
+            <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.1s"
+                 data-wow-offset="0">
+
+                <div class="single_address">
+                    <i class="ti-map"></i>
+
+                    <h4>Alamat Kami</h4>
 
                     <p>
-                        Pilih paket les yang sesuai dengan kebutuhanmu dan daftarkan diri sekarang.
-                        Tingkatkan prestasi akademik dengan bimbingan tutor yang berpengalaman.
+                        Jl. Pemuda No. 123, Kelurahan Balun<br>
+                        Cepu, Blora, Jawa Tengah 58315
                     </p>
-
-                    <div class="mt-4">
-
-                        <a href=""
-                           class="btn btn-primary me-2">
-                            <i class="fa-solid fa-user-graduate"></i>
-                            Daftar Sekarang
-                        </a>
-
-                        <a href="https://wa.me/6281234567890?text=Halo%20Admin%20SIMALES,%20saya%20ingin%20bertanya%20mengenai%20pendaftaran%20les."
-                           target="_blank"
-                           class="btn btn-success">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            Chat Admin
-                        </a>
-
-                    </div>
-
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END AJAKAN DAFTAR -->
 
+            </div>
+            <!-- END COL -->
+
+            <!-- WhatsApp -->
+            <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s"
+                 data-wow-offset="0">
+
+                <div class="single_address">
+                    <i class="ti-mobile"></i>
+
+                    <h4>Hubungi Kami</h4>
+
+                    <p>+62 812-3456-7890</p>
+                    <p>+62 811-2233-4455</p>
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+            <!-- Email -->
+            <div class="col-lg-4 col-sm-12 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.3s"
+                 data-wow-offset="0">
+
+                <div class="single_address">
+                    <i class="ti-email"></i>
+
+                    <h4>Email</h4>
+
+                    <p>info@simales.com</p>
+                    <p>admin@simales.com</p>
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+        </div>
+        <!-- END ROW -->
+
+    </div>
+    <!-- END CONTAINER -->
+</section>
+<!-- END ADDRESS -->	
+
+	<!-- CONTACT -->
+	<div id="contact" class="contact_area section-padding">
+		<div class="container">			
+			<div class="row">					
+				<div class="col-lg-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">		<div class="map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15835.895485307947!2d111.57156447596346!3d-7.12901884163142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e776411abeabb93%3A0x3ccba806cf9ef497!2sSTT%20Ronggolawe%20Cepu!5e0!3m2!1sid!2sid!4v1781590621090!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					</div>					
+				</div><!-- END COL  -->				
+			</div><!-- END ROW -->				
+		</div><!--- END CONTAINER -->
+	</div>
+	<!-- END CONTACT -->
+		
 		<!-- START FOOTER -->
 <div class="footer section-padding">
     <div class="container">
@@ -309,6 +286,6 @@
     <script src="{% static 'assets/js/wow.min.js' %}"></script>
     <!-- scripts js -->
     <script src="{% static 'assets/js/scripts.js' %}"></script>	
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>					
 </body>
 </html>

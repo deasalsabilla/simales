@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Jenjang(models.Model):
@@ -157,9 +158,7 @@ class Pendaftaran(models.Model):
         related_name='pendaftaran'
     )
 
-    tanggal_daftar = models.DateTimeField(
-        auto_now_add=True
-    )
+    tanggal_daftar = models.DateTimeField(auto_now_add=True)
 
     status = models.CharField(
         max_length=30,
@@ -167,10 +166,21 @@ class Pendaftaran(models.Model):
         default='MENUNGGU_PEMBAYARAN'
     )
 
-    catatan = models.TextField(
-        blank=True,
-        null=True
-    )
+    catatan = models.TextField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.status == 'AKTIF':
+            try:
+                pembayaran = self.pembayaran
+
+                if pembayaran.verified_at is None:
+                    pembayaran.verified_at = timezone.now()
+                    pembayaran.save(update_fields=['verified_at'])
+
+            except Pembayaran.DoesNotExist:
+                pass
 
     class Meta:
         ordering = ['-tanggal_daftar']
@@ -178,7 +188,6 @@ class Pendaftaran(models.Model):
 
     def __str__(self):
         return self.kode_pendaftaran
-
 
 class Pembayaran(models.Model):
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import PaketLes, Siswa, Pendaftaran, Rekening, Pembayaran
+from .models import PaketLes, Siswa, Pendaftaran, Rekening, Pembayaran, Jadwal
 import random
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
@@ -189,8 +189,33 @@ def bayar(request):
 
     return render(request, 'bayar.html', context)
 
+@login_required
 def jadwal(request):
-    return render(request, 'jadwal.html')
+
+    if not hasattr(request.user, 'siswa'):
+        return render(
+            request,
+            'jadwal.html',
+            {
+                'jadwal_list': []
+            }
+        )
+
+    siswa = request.user.siswa
+
+    jadwal_list = Jadwal.objects.filter(
+        aktif=True,
+        jenjang__paket_les__pendaftaran__siswa=siswa,
+        jenjang__paket_les__pendaftaran__status='AKTIF'
+    ).distinct()
+
+    return render(
+        request,
+        'jadwal.html',
+        {
+            'jadwal_list': jadwal_list
+        }
+    )
 
 def login_view(request):
     if request.method == 'POST':
@@ -290,3 +315,28 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def kontak(request):
+    return render(request, 'kontak.html')
+
+@login_required
+def les_saya(request):
+    try:
+        siswa = request.user.siswa
+
+        pendaftaran_list = Pendaftaran.objects.filter(
+            siswa=siswa
+        ).select_related(
+            'paket',
+            'paket__jenjang',
+            'paket__mata_pelajaran'
+        )
+
+    except:
+        pendaftaran_list = []
+
+    context = {
+        'pendaftaran_list': pendaftaran_list
+    }
+
+    return render(request, 'les_saya.html', context)

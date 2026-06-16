@@ -205,7 +205,7 @@
                   <div class="harga">Rp {{ paket.biaya|floatformat:0|intcomma }}</div>
                 </div>
 
-                <a href="#" class="btn-daftar">Daftar Sekarang</a>
+                <a href="{% url 'daftar' %}" class="btn-daftar">Daftar Sekarang</a>
               </div>
             </div>
           {% endfor %}
@@ -277,13 +277,6 @@
               Promo berlaku hingga akhir bulan ini.
             </p>
 
-            <a href="" class="cta">
-              <span>Daftar Sekarang</span>
-              <svg width="13px" height="10px" viewBox="0 0 13 10">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
@@ -303,13 +296,6 @@
               belajar untuk menentukan program yang paling sesuai.
             </p>
 
-            <a href="" class="cta">
-              <span>Lihat Paket</span>
-              <svg width="13px" height="10px" viewBox="0 0 13 10">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
